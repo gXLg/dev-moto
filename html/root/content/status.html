@@ -1,0 +1,23 @@
+<h2>Status</h2>
+
+<form style="border: 1px solid black; border-radius: 10px; margin: 10px; padding: 10px;">
+  <div>
+    Add a new status tracker
+    <small>(To remove, enter the IDs with a minus)</small>
+  </div>
+
+  <label>
+    Name:
+    <input type="text" null-tracker="name">
+  </label>
+  <br>
+
+  <null-request null="add-status" null-tracks="name" null-processor="$./lib/add_status.js" null-handler="() => window.location.reload()">
+    <input type="submit" value="Add">
+  </null-request>
+
+</form>
+
+<div>
+  <null-data null="status" null-processor="$./lib/status.js" null-parser="$./client/status.js"></null-data>
+</div>

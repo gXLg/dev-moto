@@ -1,0 +1,36 @@
+<!--
+
+  Each sunday:
+  * Input the goals
+  * Press "plan"
+  * Best way of reducing stress and increasing efficiency is calculated
+
+  Goals:
+  * Duration, Amount, Days
+  * Fix goals (appointments)
+  * Use OpenAI
+
+  Calculation:
+  * Record start time, duration and effects
+  * Linear gradient for effects depending on duration and starting time
+  * Search for the best time plan
+
+-->
+
+<form style="border: 1px solid black; border-radius: 10px; margin: 10px; padding: 10px;">
+
+  <div>
+    What do you plan to do this week?
+  </div>
+
+  <textarea null-tracker="prompt"></textarea><br>
+
+  <null-request null="plan" null-tracks="prompt" null-processor="$./lib/plan.js" null-handler="() => window.location.reload()">
+    <input type="submit" value="Create plan">
+  </null-request>
+
+</form>
+
+<div>
+  <null-data null="plans" null-processor="$./lib/plans.js" null-parser="$./client/plans.js"></null-data>
+</div>

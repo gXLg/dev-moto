@@ -1,0 +1,23 @@
+<h2>Skills</h2>
+
+<form style="border: 1px solid black; border-radius: 10px; margin: 10px; padding: 10px;">
+  <div>
+    Add a new skill
+    <small>(To remove, enter the IDs with a minus)</small>
+  </div>
+
+  <label>
+    Name:
+    <input type="text" null-tracker="name">
+  </label>
+  <br>
+
+  <null-request null="add-skill" null-tracks="name" null-processor="$./lib/add_skill.js" null-handler="() => window.location.reload()">
+    <input type="submit" value="Add">
+  </null-request>
+
+</form>
+
+<div>
+  <null-data null="skills" null-processor="$./lib/skills.js" null-parser="$./client/skills.js"></null-data>
+</div>

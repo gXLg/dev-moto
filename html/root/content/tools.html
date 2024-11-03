@@ -1,0 +1,103 @@
+<style>
+  .d {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+  }
+</style>
+
+<script>
+  function isWorkPhase(minutes, seconds) {
+    const total = minutes * 60 + seconds;
+    const cycle = 7800;
+    const pos = total % cycle;
+
+    // Determine phase based on pos
+    if (pos < 1500) {
+      return true;
+    } else if (pos < 1800) {
+      return false;
+    } else if (pos < 3300) {
+      return true;
+    } else if (pos < 3600) {
+      return false;
+    } else if (pos < 5100) {
+      return true;
+    } else if (pos < 5400) {
+      return false;
+    } else if (pos < 6900) {
+      return true;
+    } else {
+      return false;  // End of cycle, long break
+    }
+  }
+
+  let toggle = false;
+  let int = null;
+  let stamp = null;
+  function track() {
+    if (!toggle) {
+      stamp = Date.now();
+      const div = document.getElementById("out");
+      int = setInterval(() => {
+
+        const n = Date.now();
+        const d = parseInt((n - stamp) / 1000);
+
+        const sec = d % 60;
+        const min = parseInt(d / 60) % 60;
+        const hor = parseInt(d / 3600);
+
+        div.innerText = (
+          hor + ":" +
+          min.toString().padStart(2, "0") + ":" +
+          sec.toString().padStart(2, "0")
+        );
+        div.style.backgroundColor = isWorkPhase(min, sec) ? "yellow" : "green";
+
+      }, 1000);
+
+    } else {
+      clearInterval(int);
+      const t = document.getElementById("time");
+      const s = new Date(stamp);
+      const u = s.getHours() * 60 + s.getMinutes()
+      t.value = u + "+" + Math.round((Date.now() - stamp) / 60000);
+    }
+    toggle = !toggle;
+  }
+</script>
+
+<div class="d">
+  <div>🍅 Pomodoro Tracker</div>
+  <div id="out">-</div>
+  <button onclick="track()">Track</button>
+</div>
+
+<form class="d">
+  <div>Add current time to tracking</div>
+  <label>
+    Task ID:
+    <input type="number" null-tracker="task">
+  </label>
+  <br>
+
+  <label>
+    Effects:
+    <textarea null-tracker="effects"></textarea>
+  </label>
+  <br>
+
+  <label>
+    Times:
+    <input id="time" type="text" null-tracker="time">
+  </label>
+  <br>
+
+
+  <null-request null="track-task" null-tracks="task,effects,time" null-processor="$./lib/track_task.js" null-handler="() => navigate('/')">
+    <input type="submit" value="Track">
+  </null-request>
+
+</form>
