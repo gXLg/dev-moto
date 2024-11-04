@@ -8,7 +8,7 @@
 </style>
 
 <script>
-  function isWorkPhase(minutes, seconds) {
+  function isWorkPhase(total) {
     const total = minutes * 60 + seconds;
     const cycle = 7800;
     const pos = total % cycle;
@@ -36,10 +36,12 @@
   let toggle = false;
   let int = null;
   let stamp = null;
-  function track() {
+  function track(st) {
     if (!toggle) {
-      stamp = Date.now();
+      document.getElementById("cont").style.display = "none";
+      if (!st) stamp = Date.now();
       const div = document.getElementById("out");
+      const col = document.getElementById("color");
       int = setInterval(() => {
 
         const n = Date.now();
@@ -54,18 +56,25 @@
           min.toString().padStart(2, "0") + ":" +
           sec.toString().padStart(2, "0")
         );
-        div.style.backgroundColor = isWorkPhase(min, sec) ? "yellow" : "green";
+        col.style.backgroundColor = isWorkPhase(d) ? "yellow" : "green";
 
       }, 1000);
 
     } else {
+      document.getElementById("cont").style.display = null;
       clearInterval(int);
+      localStorage.setItem('track', stamp);
     }
     toggle = !toggle;
   }
+
+  function cont() {
+    stamp = parseInt(localStorage.getItem('track') ?? Date.now());
+    track(true);
+  }
 </script>
 
-<div class="d">
+<div class="d" id="color">
   <div>🍅 Pomodoro Tracker</div>
   <br>
   <br>
@@ -73,4 +82,5 @@
   <br>
   <br>
   <button onclick="track()">Track</button>
+  <button id="cont" onclick="cont()">Continue</button>
 </div>
