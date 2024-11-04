@@ -15,29 +15,5 @@ nulls({
   "static": "./static",
   "ready": () => console.log("Server up!"),
   "port": parseInt(process.argv[2] ?? 31337),
-  "https": false
+  "https": true
 });
-
-
-/*
-
-## Basic Skills
-* Discipline
-* Concentration
-* Learning
-* Productivity
-* ...
-
-## Targeted Skills
-Skills based on things I learn in the university, my hobbies or job.
-
-## Status
-* Sleep
-* Motivation
-* Happiness
-* Freshness
-* ...
-
-
-*/
-
