@@ -1,6 +1,11 @@
-<form style="border: 1px solid black; border-radius: 10px; margin: 10px; padding: 10px;">
+<form class="d">
   <div>
-    Submit final feedback about this week
+    Submit final feedback about this week.
+    This feedback together with your adjustments
+    history will be used to generate observations
+    about your behaviour and preferences,
+    so that next timetable generations will be better
+    for you!
   </div>
 
   <label>
@@ -16,5 +21,5 @@
 
 <h3>Notes:</h3>
 <div>
-  <null-data null="notes" null-processor="$./lib/notes.js"></null-data>
+  <null-data null="notes" null-processor="$./lib/notes.js" null-parser="s => '<pre>' + s + '</pre>'"></null-data>
 </div>

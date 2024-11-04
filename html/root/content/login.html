@@ -1,0 +1,22 @@
+<form class="d">
+  <div>
+    Login to gain access to the AI planner!
+  </div>
+
+  <label>
+    Username:
+    <input type="text" null-tracker="username" autocomplete="username">
+  </label>
+  <br>
+
+  <label>
+    Password:
+    <input type="password" null-tracker="password" autocomplete="current-password">
+  </label>
+  <br>
+
+  <null-request null="login" null-tracks="username,password" null-processor="$./lib/login.js" null-handler="() => window.location.reload()">
+    <input type="submit" value="Login">
+  </null-request>
+</form>
+
