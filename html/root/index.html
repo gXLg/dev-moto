@@ -2,19 +2,17 @@
 <div>To change the world first change yourself!</div>
 
 <div>
-  <a href="/" null-link>Home</a> -
-  <a href="/status" null-link>Status</a> -
-  <a href="/skills" null-link>Skills</a> -
-  <a href="/tasks" null-link>Tasks</a> -
+  <a href="/" null-link>Adjust</a> -
+  <a href="/create" null-link>Create</a> -
   <a href="/tools" null-link>Tools</a> -
-  <a href="/plan" null-link>Plan</a>
+  <a href="/notes" null-link>Feedback</a>
 </div>
 
 <null-container null="content">
   <script null-provider>
     return (req, res) => {
       const path = req.body.path.slice(1);
-      if (!["tools", "skills", "tasks", "plan", "status"].includes(path)) return "home";
+      if (!["create", "tools", "notes"].includes(path)) return "home";
       return path;
     };
   </script>

@@ -1,0 +1,20 @@
+<form style="border: 1px solid black; border-radius: 10px; margin: 10px; padding: 10px;">
+  <div>
+    Submit final feedback about this week
+  </div>
+
+  <label>
+    Feedback:
+    <textarea cols="55" rows="10" null-tracker="feedback"></textarea>
+  </label>
+  <br>
+
+  <null-request null="notes" null-tracks="feedback" null-processor="$./lib/summarise.js" null-handler="() => window.location.reload()">
+    <input type="submit" value="Submit">
+  </null-request>
+</form>
+
+<h3>Notes:</h3>
+<div>
+  <null-data null="notes" null-processor="$./lib/notes.js"></null-data>
+</div>

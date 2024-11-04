@@ -60,10 +60,6 @@
 
     } else {
       clearInterval(int);
-      const t = document.getElementById("time");
-      const s = new Date(stamp);
-      const u = s.getHours() * 60 + s.getMinutes()
-      t.value = u + "+" + Math.round((Date.now() - stamp) / 60000);
     }
     toggle = !toggle;
   }
@@ -71,33 +67,10 @@
 
 <div class="d">
   <div>🍅 Pomodoro Tracker</div>
-  <div id="out">-</div>
+  <br>
+  <br>
+  <span class="d" id="out">-</span>
+  <br>
+  <br>
   <button onclick="track()">Track</button>
 </div>
-
-<form class="d">
-  <div>Add current time to tracking</div>
-  <label>
-    Task ID:
-    <input type="number" null-tracker="task">
-  </label>
-  <br>
-
-  <label>
-    Effects:
-    <textarea null-tracker="effects"></textarea>
-  </label>
-  <br>
-
-  <label>
-    Times:
-    <input id="time" type="text" null-tracker="time">
-  </label>
-  <br>
-
-
-  <null-request null="track-task" null-tracks="task,effects,time" null-processor="$./lib/track_task.js" null-handler="() => navigate('/')">
-    <input type="submit" value="Track">
-  </null-request>
-
-</form>

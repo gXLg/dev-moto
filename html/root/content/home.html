@@ -1,1 +1,25 @@
-Welcome!
+<form style="border: 1px solid black; border-radius: 10px; margin: 10px; padding: 10px;">
+  <div>
+    Inspect and adjust your plans real-time!
+  </div>
+
+  <label>
+    Time:
+    <input type="text" null-tracker="time">
+  </label>
+  <br>
+
+  <label>
+    Feedback:
+    <textarea cols="55" rows="10" null-tracker="feedback"></textarea>
+  </label>
+  <br>
+
+  <null-request null="adjust" null-tracks="time,feedback" null-processor="$./lib/adjust.js" null-handler="() => window.location.reload()">
+    <input type="submit" value="Adjust plan">
+  </null-request>
+</form>
+
+<div>
+  <null-data null="plans" null-processor="$./lib/plans.js" null-parser="$./client/plans.js"></null-data>
+</div>

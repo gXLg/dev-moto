@@ -1,0 +1,26 @@
+<form style="border: 1px solid black; border-radius: 10px; margin: 10px; padding: 10px;">
+  <div>
+    It's Sunday and you are planning for the next week?<br>
+    Good boy! What do you plan to do this week?
+  </div>
+
+  <label>
+    Fixed settings:
+    <textarea id="fixed" cols="55" rows="10" null-tracker="fixed"></textarea>
+  </label>
+  <br>
+
+  <label>
+    Other plans:
+    <textarea cols="55" rows="10" null-tracker="other"></textarea>
+  </label>
+  <br>
+
+  <null-request null="plan" null-tracks="fixed,other" null-processor="$./lib/planner.js" null-handler="() => { localStorage.setItem('fixed', document.getElementById('fixed').value); navigate('/'); }">
+    <input type="submit" value="Create plan">
+  </null-request>
+</form>
+
+<script>
+  document.getElementById("fixed").value = localStorage.getItem("fixed") ?? "";
+</script>
