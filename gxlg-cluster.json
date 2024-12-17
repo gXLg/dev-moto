@@ -1,5 +1,5 @@
 {
-  "ram": 700,
+  "ram": 200,
   "record": "dev-moto.gxlg.dev",
-  "start": "node . {port}"
+  "start": "node --max-old-space-size=200 index.js {port}"
 }
