@@ -17,3 +17,10 @@ These are recurring weekly activities that can be adjusted around the “other g
 
 {fixed}
 
+---
+
+# Context (Details About Unknown Factors)
+
+These are some details about unknown factors, for example how long it takes me to go somewhere. Take this details into account when generating the time table.
+
+{context}

@@ -20,11 +20,20 @@
   </label>
   <br>
 
-  <null-request null="plan" null-tracks="fixed,other" null-processor="$./lib/planner.js" null-handler="() => { localStorage.setItem('fixed', document.getElementById('fixed').value); navigate('/'); }">
+  <label>
+    Context (details like duration of a fixed travel, etc.):
+    <br>
+    <textarea id="context" cols="55" rows="10" null-tracker="context"></textarea>
+    <button onclick="localStorage.setItem('context', document.getElementById('context').value)">Save</button>
+  </label>
+  <br>
+
+  <null-request null="plan" null-tracks="fixed,other,context" null-processor="$./lib/planner.js" null-handler="() => { localStorage.setItem('fixed', document.getElementById('fixed').value); localStorage.setItem('context', document.getElementById('context').value); navigate('/'); }">
     <input type="submit" value="Create plan">
   </null-request>
 </form>
 
 <script>
   document.getElementById("fixed").value = localStorage.getItem("fixed") ?? "";
+  document.getElementById("context").value = localStorage.getItem("context") ?? "";
 </script>
